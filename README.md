@@ -17,6 +17,9 @@ Useful Commands
 ===============
 
 - `./gradlew dist` create a stand-alone distributable jar file in the `dist` folder
+- `./gradlew test` test everything
+- `./gradlew codenarcMain` codenarc only main source files
+- `./gradlew codenarcTest` codenarc only test source files
 - `./gradlew build` build the whole project
 - `gradle wrapper` Regenerate wrapper (graldew, gradlew.bat)
 
@@ -55,3 +58,7 @@ Notes
 - Intially, all CodeNarc rules are enabled (except for SystemOutPrint, and Println), making for a very uptight development environment, edit `codenarc-ruleset.groovy` to make it more bearable. But for OCD enabling, it's great :)
 
 
+TODO
+====
+
+- Exclude codenarc for unit tests

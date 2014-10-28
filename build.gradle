@@ -11,6 +11,9 @@ codenarc {
   configFile = new File("${project.projectDir}/codenarc-ruleset.groovy")
 }
 
+// See: http://mrhaki.blogspot.com/2011/01/gradle-goodness-dont-let-codenarc.html
+//[codenarcMain, codenarcTest]*.ignoreFailures = true
+
 mainClassName = "app.Main"
 
 repositories {
