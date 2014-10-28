@@ -11,7 +11,10 @@ Includes:
 - An extensive Codenarc ruleset configuration
 - Generated x-platform gradlew scripts
 - Groovydoc
-- Unit Testing
+- Unit Testing support
+- Sample Application main class and package
+- Sample Spock Test case
+- Saimple JUnit Test case
 
 Useful Commands
 ===============
@@ -20,6 +23,7 @@ Useful Commands
 - `./gradlew test` test everything
 - `./gradlew codenarcMain` codenarc only main source files
 - `./gradlew codenarcTest` codenarc only test source files
+- `./gradlew groovydoc` generate documentation using Groovydoc 2 (pretty!)
 - `./gradlew build` build the whole project
 - `gradle wrapper` Regenerate wrapper (graldew, gradlew.bat)
 

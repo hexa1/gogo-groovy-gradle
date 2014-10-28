@@ -1,25 +1,42 @@
-//http://www.gradle.org/docs/current/userguide/groovy_plugin.html
+/**
+ * @see http://www.gradle.org/docs/current/userguide/groovy_plugin.html
+ */
 apply plugin: 'groovy'
 
-//http://www.gradle.org/docs/current/userguide/application_plugin.html
+/**
+ * @see http://www.gradle.org/docs/current/userguide/application_plugin.html
+ */
 apply plugin: 'application'
 
-//http://www.gradle.org/docs/current/userguide/codenarc_plugin.html
+/**
+ * @see http://www.gradle.org/docs/current/userguide/codenarc_plugin.html
+ */
 apply plugin: 'codenarc'
 
+/**
+ *
+ */
 codenarc {
   configFile = new File("${project.projectDir}/codenarc-ruleset.groovy")
 }
 
-// See: http://mrhaki.blogspot.com/2011/01/gradle-goodness-dont-let-codenarc.html
+/**
+ * @see http://mrhaki.blogspot.com/2011/01/gradle-goodness-dont-let-codenarc.html
+ */
 //[codenarcMain, codenarcTest]*.ignoreFailures = true
 
 mainClassName = "app.Main"
 
+/**
+ *
+ */
 repositories {
     mavenCentral()
 }
 
+/**
+ *
+ */
 sourceSets {
   main {
       groovy {
@@ -33,40 +50,56 @@ sourceSets {
   }
 }
 
+/**
+ *
+ */
 configurations {
    groovyDoc
 }
 
+/**
+ * TODO: Implement me
+ */
 run {
   ignoreExitValue = true
-    if(project.hasProperty("appArgs")) {
-      args Eval.me(appArgs)
-    }
+  if(project.hasProperty("appArgs")) {
+    args Eval.me(appArgs)
+  }
 }
 
+/**
+ *
+ */
 groovydoc {
   groovyClasspath = configurations.groovyDoc
   destinationDir = new File("${project.projectDir}/docs")
-  docTitle = "Harvest"
+  docTitle = "App"
   header = ""
   footer = ""
   //windowTitle = ""
 }
 
+/**
+ *
+ */
 dependencies {
   compile "org.codehaus.groovy:groovy-all:2.3.4"
   compile "commons-cli:commons-cli:1.2"
-
   groovyDoc 'org.codehaus.groovy:groovy-groovydoc:2.3.3'
   groovyDoc 'org.codehaus.groovy:groovy-ant:2.3.3'
-
   testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
 }
 
+/**
+ *
+ */
 task wrapper(type: Wrapper) {
   gradleVersion = '2.0'
 }
 
+/**
+ *
+ */
 def getVersionName (useGit=false)
 {
   def suffix = ""
@@ -82,6 +115,9 @@ def getVersionName (useGit=false)
   project.name + suffix
 }
 
+/**
+ *
+ */
 task buildJar(type: Jar, dependsOn: [test, jar]) {
   baseName = getVersionName()
   from(
@@ -100,6 +136,9 @@ task buildJar(type: Jar, dependsOn: [test, jar]) {
   }
 }
 
+/**
+ *
+ */
 task dist(dependsOn: buildJar, type: Copy) {
   from ("${buildDir}/${libsDirName}")
   into ("./dist")
