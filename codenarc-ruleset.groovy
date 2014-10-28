@@ -279,9 +279,9 @@ ruleset
     LoggingSwallowsStacktrace
     MultipleLoggers
     PrintStackTrace
-    Println
+    //Println
     SystemErrPrint
-    SystemOutPrint
+    //SystemOutPrint
 
     // rulesets/naming.xml
     AbstractClassName

@@ -11,7 +11,7 @@ codenarc {
   configFile = new File("${project.projectDir}/codenarc-ruleset.groovy")
 }
 
-mainClassName = "com.hexa1.harvest.Main"
+mainClassName = "app.Main"
 
 repositories {
     mavenCentral()
@@ -97,7 +97,7 @@ task buildJar(type: Jar, dependsOn: [test, jar]) {
   }
 }
 
-task buildAndCopyJar(dependsOn: buildJar, type: Copy) {
+task dist(dependsOn: buildJar, type: Copy) {
   from ("${buildDir}/${libsDirName}")
   into ("./dist")
   include(getVersionName() + ".jar")
