@@ -26,6 +26,7 @@ Useful Commands
 - `./gradlew groovydoc` generate documentation using Groovydoc 2 (pretty!)
 - `./gradlew build` build the whole project
 - `gradle wrapper` Regenerate wrapper (graldew, gradlew.bat)
+- `./app` Run the application in development as standalone (emulates distribution)
 
 Directory Structure
 ===================
@@ -53,7 +54,9 @@ Directory Structure
 │   └── app
 │       └── Main.groovy
 ├── test => Spock and JUnit (and other) tests go here
-└── testReport.html -> ./build/reports/tests/index.html  => a symlink to the generated test report by running ./gradlew test
+└── testReport.html -> ./build/reports/tests/index.html  => a symlink to the generated test 
+report by running ./gradlew test
+└── app => run the app with arguments in development mode
 ```
 
 Notes
