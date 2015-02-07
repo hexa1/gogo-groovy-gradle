@@ -31,7 +31,7 @@ mainClassName = "app.Main"
  *
  */
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 /**
@@ -39,14 +39,14 @@ repositories {
  */
 sourceSets {
   main {
-      groovy {
-          srcDirs = ['src']
-      }
+    groovy {
+      srcDirs = ['src']
+    }
   }
   test {
-      groovy {
-          srcDirs = ['test']
-      }
+    groovy {
+      srcDirs = ['test']
+    }
   }
 }
 
@@ -54,7 +54,7 @@ sourceSets {
  *
  */
 configurations {
-   groovyDoc
+  groovyDoc
 }
 
 /**
