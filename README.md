@@ -1,6 +1,6 @@
-## A bootstrap of a typical Gradle Groovy Project [![Build Status](https://travis-ci.org/hexa1/gogo-groovy-gradle.svg)](https://travis-ci.org/hexa1/gogo-groovy-gradle)
+## GoGo Groovy Gradle [![Build Status](https://travis-ci.org/hexa1/gogo-groovy-gradle.svg)](https://travis-ci.org/hexa1/gogo-groovy-gradle)
 
-A starting point for gradle-based Groovy projects.
+A starting point for gradle-based Groovy projects, a bootstrap of a typical Gradle Groovy Project
 
 Includes:
 
