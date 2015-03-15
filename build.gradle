@@ -83,10 +83,11 @@ groovydoc {
  *
  */
 dependencies {
-  compile "org.codehaus.groovy:groovy-all:2.4.0"
-  groovyDoc 'org.codehaus.groovy:groovy-groovydoc:2.4.0'
-  groovyDoc 'org.codehaus.groovy:groovy-ant:2.4.0'
-  compile "commons-cli:commons-cli:1.2"
+  def groovyVersion = "2.4.1"
+  compile   "org.codehaus.groovy:groovy-all:${groovyVersion}"
+  groovyDoc "org.codehaus.groovy:groovy-groovydoc:${groovyVersion}"
+  groovyDoc "org.codehaus.groovy:groovy-ant:${groovyVersion}"
+
   testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
 }
 
@@ -94,7 +95,7 @@ dependencies {
  *
  */
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.2.1'
+  gradleVersion = '2.3'
 }
 
 /**
@@ -123,12 +124,10 @@ task buildJar(type: Jar, dependsOn: [test, jar]) {
   from(
     configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
   ) {
-    exclude 'META-INF/MANIFEST.MF'
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+    //exclude 'META-INF/MANIFEST.MF'
   }
-  with jar {
-    manifest {
-    }
-  }
+  with jar
   manifest {
     attributes(
       'Main-Class': mainClassName,
