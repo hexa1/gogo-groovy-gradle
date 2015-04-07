@@ -18,6 +18,15 @@ apply plugin: 'codenarc'
  */
 apply plugin: "info.solidsoft.pitest"
 
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+version       = '0.1.0'
+mainClassName = 'app.Main'
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
 /**
  *
  */
@@ -29,8 +38,6 @@ codenarc {
  * @see http://mrhaki.blogspot.com/2011/01/gradle-goodness-dont-let-codenarc.html
  */
 //[codenarcMain, codenarcTest]*.ignoreFailures = true
-
-mainClassName = "app.Main"
 
 buildscript {
   repositories {
@@ -110,7 +117,8 @@ pitest {
  *
  */
 dependencies {
-  def groovyVersion = "2.4.3"
+  def groovyVersion = '2.4.3'
+
   compile   "org.codehaus.groovy:groovy-all:${groovyVersion}"
   groovyDoc "org.codehaus.groovy:groovy-groovydoc:${groovyVersion}"
   groovyDoc "org.codehaus.groovy:groovy-ant:${groovyVersion}"
@@ -128,25 +136,7 @@ task wrapper(type: Wrapper) {
 /**
  *
  */
-def getVersionName (useGit=false) {
-  def suffix = ""
-  if (useGit) {
-    def stdout = new ByteArrayOutputStream()
-    exec {
-      commandLine "git", "rev-list", "HEAD"
-      standardOutput = stdout
-      ignoreExitValue = true
-    }
-    suffix = '-r' + stdout.toString().split("\n")?.size()
-  }
-  project.name + suffix
-}
-
-/**
- *
- */
 task buildJar(type: Jar, dependsOn: [test, jar]) {
-  baseName = getVersionName()
   from(
     configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
   ) {
@@ -164,8 +154,27 @@ task buildJar(type: Jar, dependsOn: [test, jar]) {
 /**
  *
  */
-task dist(dependsOn: buildJar, type: Copy) {
+task fatJar(type: Jar, dependsOn: [test, jar]) {
+  from files(sourceSets.main.output.classesDir)
+  from(
+    configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  ) {
+    exclude 'META-INF/MANIFEST.MF'
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+  }
+  with jar
+  manifest {
+    attributes(
+      'Main-Class': mainClassName,
+    )
+  }
+}
+
+/**
+ *
+ */
+task dist(dependsOn: fatJar, type: Copy) {
   from ("${buildDir}/${libsDirName}")
   into ("./dist")
-  include(getVersionName() + ".jar")
+  include(project.name + '-' + project.version + '.jar')
 }
