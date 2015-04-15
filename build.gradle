@@ -119,6 +119,8 @@ pitest {
 dependencies {
   def groovyVersion = '2.4.3'
 
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+
   compile   "org.codehaus.groovy:groovy-all:${groovyVersion}"
   groovyDoc "org.codehaus.groovy:groovy-groovydoc:${groovyVersion}"
   groovyDoc "org.codehaus.groovy:groovy-ant:${groovyVersion}"
