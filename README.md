@@ -1,4 +1,4 @@
-## GoGo Groovy Gradle [![Build Status](https://travis-ci.org/hexa1/gogo-groovy-gradle.svg)](https://travis-ci.org/hexa1/gogo-groovy-gradle)
+### GoGo Groovy Gradle [![Build Status](https://travis-ci.org/hexa1/gogo-groovy-gradle.svg)](https://travis-ci.org/hexa1/gogo-groovy-gradle)
 
 A starting point for gradle-based Groovy projects, a bootstrap of a typical Gradle Groovy Project
 
@@ -23,11 +23,11 @@ Useful Commands
 ===============
 
 - `./gradlew dist` create a stand-alone distributable jar file in the `dist` folder
-- `./gradlew test` test everything
+- `./gradlew test` test everything or `./test.sh`
 - `./gradlew codenarcMain` codenarc only main source files
 - `./gradlew codenarcTest` codenarc only test source files
 - `./gradlew groovydoc` generate documentation using Groovydoc 2 (pretty!)
-- `./gradlew build` build the whole project
+- `./gradlew build` build the whole project or `./build.sh`
 - `gradle wrapper` Regenerate wrapper (graldew, gradlew.bat)
 - `./app` Run the application in development as standalone (emulates distribution)
 
@@ -62,13 +62,14 @@ report by running ./gradlew test
 └── app => run the app with arguments in development mode
 ```
 
-Notes
-=====
+### Notes
 
 - Intially, all CodeNarc rules are enabled (except for SystemOutPrint, and Println), making for a very uptight development environment, edit `codenarc-ruleset.groovy` to make it more bearable. But for OCD enabling, it's great :)
 
+### Useful Resources
 
-TODO
-====
+- http://www.mkyong.com/logging/logback-xml-example/
+
+### TODO
 
 - Exclude codenarc for unit tests
