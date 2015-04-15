@@ -7,18 +7,17 @@ import org.slf4j.LoggerFactory
  * Main Application class
  */
 class Main {
-
-  static final Logger log = LoggerFactory.getLogger(Main.class)
+  static final Logger LOG = LoggerFactory.getLogger(Main)
 
   /**
    * Main method
    */
   static void main(String[] args) {
     println 'Hello World!'
-    log.debug "A debug message"
-    log.warn "A warning message"
-    log.info "An info message"
-    log.error "An error message"
-    log.trace "A trace message"
+    LOG.debug 'A debug message'
+    LOG.warn 'A warning message'
+    LOG.info 'An info message'
+    LOG.error 'An error message'
+    LOG.trace 'A trace message'
   }
 }
