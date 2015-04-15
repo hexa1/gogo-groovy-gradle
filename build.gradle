@@ -42,12 +42,12 @@ codenarc {
 
 buildscript {
   repositories {
-      mavenCentral()
-      //Needed only for SNAPSHOT versions
-      //maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
+    mavenCentral()
+    //Needed only for SNAPSHOT versions
+    //maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
   }
   dependencies {
-      classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.4'
+    classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.4'
   }
 }
 
@@ -67,6 +67,8 @@ repositories {
  */
 configurations {
   groovyDoc
+  provided
+  compile.extendsFrom provided
 }
 
 /**
@@ -110,7 +112,9 @@ dependencies {
 
   compile fileTree(dir: 'libs', include: ['*.jar'])
 
-  //compile   "org.codehaus.groovy:groovy-all:${groovyVersion}"
+  // This will not be included in the Jar distro
+  // provided "org.codehaus.groovy:groovy-all:${groovyVersion}"
+
   compile "org.codehaus.groovy:groovy-all:${groovyVersion}", {
     exclude group: 'asm', module: 'asm-commons'
     exclude group: 'asm', module: 'asm-tree'
@@ -157,7 +161,9 @@ task buildJar(type: Jar, dependsOn: [test, jar]) {
 task fatJar(type: Jar, dependsOn: [test, jar]) {
   from files(sourceSets.main.output.classesDir)
   from(
-    configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    // Don't include provided configurations
+    (configurations.compile - configurations.provided).collect {
+      it.isDirectory() ? it : zipTree(it) }
   ) {
     exclude 'META-INF/MANIFEST.MF'
     exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'

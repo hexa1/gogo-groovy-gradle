@@ -18,6 +18,8 @@ Includes:
 - Sample Application main class and package
 - Sample Spock Test case
 - Saimple JUnit Test case
+- Example of a FatJar task: create a distributable jar with all deps
+- Example of a provided config: define compile-time deps without them being in the distributable jar: useful for building groovy libs and excluding Groovy! (or Slf4j)
 
 Useful Commands
 ===============
@@ -47,6 +49,8 @@ Directory Structure
 │   └── README.md    => generated .jar file will go here
 ├── docs
 │   └── README.md   => documentation
+├── libs            => extra jars go here
+│   └── README.md   => documentation
 ├── gradle => assets for gradlew wrapper (application plugin)
 │   └── wrapper
 │       ├── gradle-wrapper.jar
@@ -65,6 +69,7 @@ report by running ./gradlew test
 ### Notes
 
 - Intially, all CodeNarc rules are enabled (except for SystemOutPrint, and Println), making for a very uptight development environment, edit `codenarc-ruleset.groovy` to make it more bearable. But for OCD enabling, it's great :)
+- To exclude compile dependency from fat jar, mark it as `provided` instead of `compile` in dependencies
 
 ### Useful Resources
 
