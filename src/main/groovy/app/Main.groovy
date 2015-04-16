@@ -19,5 +19,5 @@ class Main {
     LOG.info 'An info message'
     LOG.error 'An error message'
     LOG.trace 'A trace message'
-  }
-}
+  } // main
+} // Main
