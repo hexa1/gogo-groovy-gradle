@@ -3,7 +3,7 @@
 A starting point for gradle-based Groovy projects, a bootstrap of a typical Gradle Groovy Project
 
 - Groovy 2.4.3
-- Gradle 2.3
+- Gradle 2.4
 
 Includes:
 
