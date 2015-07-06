@@ -61,6 +61,26 @@ repositories {
     name 'sonatype-repository'
     url 'http://oss.sonatype.org/content/repositories/snapshots/'
   }
+
+  /*
+  // Amazon S3 Repo
+  // See: https://docs.gradle.org/current/release-notes
+  maven {
+    url "s3://someS3Bucket/maven2"
+    credentials(AwsCredentials) {
+      accessKey "someKey"
+      secretKey "someSecret"
+    }
+  }
+
+  ivy {
+    url "s3://someS3Bucket/ivy"
+    credentials(AwsCredentials) {
+      accessKey "someKey"
+      secretKey "someSecret"
+    }
+  }
+  */
 }
 
 /**

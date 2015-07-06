@@ -17,10 +17,11 @@ Includes:
 - Unit Testing support
 - Sample Application main class and package
 - Sample Spock Test case
-- Saimple JUnit Test case
+- Sample JUnit Test case
 - Example of a FatJar task: create a distributable jar with all deps
 - Example of a provided config: define compile-time deps without them being in the distributable jar: useful for building groovy libs and excluding Groovy! (or Slf4j)
 - Gradle daemon
+- S3 maven and ivy repos
 
 Useful Commands
 ===============
