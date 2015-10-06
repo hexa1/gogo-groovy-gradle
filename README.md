@@ -79,4 +79,7 @@ report by running ./gradlew test
 
 ### TODO
 
+- Break up gradle file organization, like in lazybones griffon generator
 - Exclude codenarc for unit tests
+- include code generation, standard header for files, etc...
+- Increment semver build number

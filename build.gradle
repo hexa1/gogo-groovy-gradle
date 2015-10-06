@@ -32,8 +32,15 @@ sourceCompatibility = '1.7'
 /**
  *
  */
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.7'
+}
+
+/**
+ *
+ */
 codenarc {
-  configFile = new File("${project.projectDir}/codenarc-ruleset.groovy")
+  configFile = new File("${project.projectDir}/gradle/codenarc-ruleset.groovy")
 }
 
 /**
@@ -149,13 +156,6 @@ dependencies {
   groovyDoc "org.codehaus.groovy:groovy-groovydoc:${groovyVersion}"
   groovyDoc "org.codehaus.groovy:groovy-ant:${groovyVersion}"
   testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
-}
-
-/**
- *
- */
-task wrapper(type: Wrapper) {
-  gradleVersion = '2.4'
 }
 
 /**
