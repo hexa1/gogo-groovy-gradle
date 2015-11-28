@@ -2,8 +2,8 @@
 
 A starting point for gradle-based Groovy projects, a bootstrap of a typical Gradle Groovy Project
 
-- Groovy 2.4.3
-- Gradle 2.4
+- Groovy 2.4.5
+- Gradle 2.9
 
 Includes:
 
@@ -79,6 +79,8 @@ report by running ./gradlew test
 
 ### TODO
 
+- Add ascii doctor
+- As in lazybones generator (gradle-quickstart), add code coverage/quality tools, break apart gradle config, use a rule-based codenarc config (for granular excludes)
 - Break up gradle file organization, like in lazybones griffon generator
 - Exclude codenarc for unit tests
 - include code generation, standard header for files, etc...

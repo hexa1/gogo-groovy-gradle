@@ -21,7 +21,7 @@ apply plugin: "info.solidsoft.pitest"
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-version             = '0.1.0'
+version             = appVersion
 mainClassName       = 'app.Main'
 sourceCompatibility = '1.7'
 //group               = 'com.my.group'
@@ -33,7 +33,7 @@ sourceCompatibility = '1.7'
  *
  */
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.7'
+  gradleVersion = gradleVersion
 }
 
 /**
@@ -55,7 +55,7 @@ buildscript {
     //maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
   }
   dependencies {
-    classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.4'
+    classpath "info.solidsoft.gradle.pitest:gradle-pitest-plugin:${pitestPluginVersion}"
   }
 }
 
@@ -115,7 +115,7 @@ run {
 groovydoc {
   groovyClasspath = configurations.groovyDoc
   destinationDir  = new File("${project.projectDir}/docs")
-  docTitle        = "App"
+  docTitle        = appName
   header          = ""
   footer          = ""
   //windowTitle   = ""
@@ -136,8 +136,6 @@ pitest {
  *
  */
 dependencies {
-  def groovyVersion = '2.4.3'
-
   compile fileTree(dir: 'libs', include: ['*.jar'])
 
   // This will not be included in the Jar distro
@@ -155,7 +153,7 @@ dependencies {
 
   groovyDoc "org.codehaus.groovy:groovy-groovydoc:${groovyVersion}"
   groovyDoc "org.codehaus.groovy:groovy-ant:${groovyVersion}"
-  testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
+  testCompile 'org.spockframework:spock-core:${spockCoreVersion}'
 }
 
 /**
