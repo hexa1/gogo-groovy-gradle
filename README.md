@@ -28,15 +28,16 @@ Includes:
 Useful Commands
 ===============
 
-- `./gradlew dist` create a stand-alone distributable jar file in the `dist` folder
-- `./gradlew test` test everything or `./test.sh`
-- `./gradlew codenarcMain` codenarc only main source files
-- `./gradlew codenarcTest` codenarc only test source files
-- `./gradlew groovydoc` generate documentation using Groovydoc 2 (pretty!)
-- `./gradlew build` build the whole project or `./build.sh`
-- `gradle wrapper` Regenerate wrapper (graldew, gradlew.bat)
-- `./app` Run the application in development as standalone (emulates distribution)
-- `./gradlew asciidoctor` Generate ascii doctor docs
+- `$ ./app` Run the application in development as standalone (emulates distribution)
+- `$ ./gradle wrapper` Regenerate wrapper (graldew, gradlew.bat)
+- `$ ./gradlew dist` create a stand-alone distributable jar file in the `dist` folder
+- `$ ./gradlew test` test everything or `./test.sh`
+- `$ ./gradlew codenarcMain` codenarc only main source files
+- `$ ./gradlew codenarcTest` codenarc only test source files
+- `$ ./gradlew groovydoc` generate documentation using Groovydoc 2 (pretty!)
+- `$ ./gradlew build` build the whole project or `./build.sh`
+- `$ ./gradlew asciidoctor` Generate ascii doctor docs
+- `$ ./gradlew pitest` Run pitest
 
 Directory Structure
 ===================
