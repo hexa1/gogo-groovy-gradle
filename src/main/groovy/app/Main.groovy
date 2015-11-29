@@ -11,7 +11,8 @@ class Main {
 
   /**
    * Main method
-   */
+   *
+   */// tag::main[]
   static void main(String[] args) {
     println 'Hello World!'
     LOG.debug 'A debug message'
@@ -19,5 +20,6 @@ class Main {
     LOG.info 'An info message'
     LOG.error 'An error message'
     LOG.trace 'A trace message'
-  } // main
+  }
+  // end::main[]
 } // Main

@@ -1,4 +1,28 @@
 /**
+ *
+ */
+buildscript {
+  repositories {
+    mavenCentral()
+    //Needed only for SNAPSHOT versions
+    //maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
+  }
+  dependencies {
+    classpath "info.solidsoft.gradle.pitest:gradle-pitest-plugin:${pitestPluginVersion}"
+    classpath 'org.asciidoctor:asciidoctorj-epub3:' + asciidoctorjEpub3Version
+    classpath 'org.asciidoctor:asciidoctorj-pdf:' + asciidoctorjPdfVersion
+  }
+}
+
+/**
+ *
+ */
+plugins {
+  id 'org.asciidoctor.convert' version "1.5.2"
+  id 'org.kordamp.gradle.livereload' version "0.2.1"
+}
+
+/**
  * @see http://www.gradle.org/docs/current/userguide/groovy_plugin.html
  */
 apply plugin: 'groovy'
@@ -18,6 +42,16 @@ apply plugin: 'codenarc'
  */
 apply plugin: "info.solidsoft.pitest"
 
+/**
+ *
+ */
+apply plugin: 'org.asciidoctor.convert'
+
+/**
+ *
+ */
+apply plugin: 'org.kordamp.gradle.livereload'
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -36,6 +70,29 @@ task wrapper(type: Wrapper) {
   gradleVersion = gradleVersion
 }
 
+asciidoctorj {
+  version = asciidoctorJVersion
+}
+
+asciidoctor {
+  backends    'html5','pdf', 'epub3'
+  attributes 'build-gradle': file('build.gradle'),
+    'sourcedir': project.sourceSets.main.groovy.srcDirs[0],
+    'endpoint-url': 'https://mysite.com',
+    'source-highlighter' : 'coderay',
+    'imagesdir': './images',
+    'toc':'left',
+    'icons': 'font',
+    'setanchors':'true',
+    'idprefix':'',
+    'idseparator':'-',
+    'docinfo1':'true'
+}
+
+liveReload {
+  docRoot asciidoctor.outputDir.canonicalPath
+}
+
 /**
  *
  */
@@ -47,17 +104,6 @@ codenarc {
  * @see http://mrhaki.blogspot.com/2011/01/gradle-goodness-dont-let-codenarc.html
  */
 //[codenarcMain, codenarcTest]*.ignoreFailures = true
-
-buildscript {
-  repositories {
-    mavenCentral()
-    //Needed only for SNAPSHOT versions
-    //maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
-  }
-  dependencies {
-    classpath "info.solidsoft.gradle.pitest:gradle-pitest-plugin:${pitestPluginVersion}"
-  }
-}
 
 /**
  *
