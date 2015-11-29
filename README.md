@@ -11,6 +11,8 @@ Includes:
 - Application plugin
 - Pitest plugin
 - Codenarc
+- Asciidoctor with sample docs
+- Asciidoctor PDF, HTML5, and EPUB backends
 - An extensive Codenarc ruleset configuration
 - Generated x-platform gradlew scripts
 - Groovydoc
@@ -34,6 +36,7 @@ Useful Commands
 - `./gradlew build` build the whole project or `./build.sh`
 - `gradle wrapper` Regenerate wrapper (graldew, gradlew.bat)
 - `./app` Run the application in development as standalone (emulates distribution)
+- `./gradlew asciidoctor` Generate ascii doctor docs
 
 Directory Structure
 ===================
@@ -79,7 +82,6 @@ report by running ./gradlew test
 
 ### TODO
 
-- Add ascii doctor
 - As in lazybones generator (gradle-quickstart), add code coverage/quality tools, break apart gradle config, use a rule-based codenarc config (for granular excludes)
 - Break up gradle file organization, like in lazybones griffon generator
 - Exclude codenarc for unit tests

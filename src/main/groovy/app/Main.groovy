@@ -14,7 +14,6 @@ class Main {
    *
    */// tag::main[]
   static void main(String[] args) {
-    println 'Hello World!'
     LOG.debug 'A debug message'
     LOG.warn 'A warning message'
     LOG.info 'An info message'
