@@ -11,6 +11,7 @@ buildscript {
     classpath "info.solidsoft.gradle.pitest:gradle-pitest-plugin:${pitestPluginVersion}"
     classpath 'org.asciidoctor:asciidoctorj-epub3:' + asciidoctorjEpub3Version
     classpath 'org.asciidoctor:asciidoctorj-pdf:' + asciidoctorjPdfVersion
+    classpath 'com.github.jruby-gradle:jruby-gradle-plugin:0.1.5'
   }
 }
 
@@ -52,6 +53,11 @@ apply plugin: 'org.asciidoctor.convert'
  */
 apply plugin: 'org.kordamp.gradle.livereload'
 
+/**
+ *
+ */
+apply plugin: 'com.github.jruby-gradle.base'
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -87,6 +93,12 @@ asciidoctor {
     'idprefix':'',
     'idseparator':'-',
     'docinfo1':'true'
+
+  dependsOn jrubyPrepareGems
+
+  requires = ['asciidoctor-diagram']
+
+  gemPath = jrubyPrepareGems.outputDir
 }
 
 liveReload {
@@ -196,6 +208,8 @@ dependencies {
 
   compile "org.slf4j:slf4j-api:1.7.13"
   runtime "ch.qos.logback:logback-classic:1.1.3"
+
+  gems 'rubygems:asciidoctor-diagram:1.2.0'
 
   groovyDoc "org.codehaus.groovy:groovy-groovydoc:${groovyVersion}"
   groovyDoc "org.codehaus.groovy:groovy-ant:${groovyVersion}"
