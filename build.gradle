@@ -63,8 +63,8 @@ apply plugin: 'com.github.jruby-gradle.base'
 
 version             = appVersion
 mainClassName       = 'app.Main'
-sourceCompatibility = '1.7'
-//group               = 'com.my.group'
+sourceCompatibility = 1.8
+group               = 'insurun'
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -158,7 +158,7 @@ configurations {
 }
 
 /**
- * TODO: Implement me
+ *
  */
 run {
   ignoreExitValue = true
