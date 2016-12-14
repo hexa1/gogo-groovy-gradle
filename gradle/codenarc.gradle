@@ -1,0 +1,16 @@
+/**
+ * @see http://www.gradle.org/docs/current/userguide/codenarc_plugin.html
+ */
+apply plugin: 'codenarc'
+
+/**
+ *
+ */
+codenarc {
+  configFile = new File("${project.projectDir}/gradle/codenarc-ruleset.groovy")
+}
+
+/**
+ * @see http://mrhaki.blogspot.com/2011/01/gradle-goodness-dont-let-codenarc.html
+ */
+//[codenarcMain, codenarcTest]*.ignoreFailures = true

@@ -4,11 +4,9 @@
 buildscript {
   repositories {
     mavenCentral()
-    //Needed only for SNAPSHOT versions
-    //maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
   }
   dependencies {
-    classpath "info.solidsoft.gradle.pitest:gradle-pitest-plugin:${pitestPluginVersion}"
+    classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:' + pitestPluginVersion
     classpath 'org.asciidoctor:asciidoctorj-epub3:' + asciidoctorjEpub3Version
     classpath 'org.asciidoctor:asciidoctorj-pdf:' + asciidoctorjPdfVersion
     classpath 'com.github.jruby-gradle:jruby-gradle-plugin:0.1.5'
@@ -34,16 +32,6 @@ apply plugin: 'groovy'
 apply plugin: 'application'
 
 /**
- * @see http://www.gradle.org/docs/current/userguide/codenarc_plugin.html
- */
-apply plugin: 'codenarc'
-
-/**
- * @see http://gradle-pitest-plugin.solidsoft.info/
- */
-apply plugin: "info.solidsoft.pitest"
-
-/**
  *
  */
 apply plugin: 'org.asciidoctor.convert'
@@ -57,6 +45,16 @@ apply plugin: 'org.kordamp.gradle.livereload'
  *
  */
 apply plugin: 'com.github.jruby-gradle.base'
+
+/**
+ *
+ */
+apply from: 'gradle/codenarc.gradle'
+
+/**
+ *
+ */
+apply from: 'gradle/pitest.gradle'
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -108,26 +106,16 @@ liveReload {
 /**
  *
  */
-codenarc {
-  configFile = new File("${project.projectDir}/gradle/codenarc-ruleset.groovy")
-}
-
-/**
- * @see http://mrhaki.blogspot.com/2011/01/gradle-goodness-dont-let-codenarc.html
- */
-//[codenarcMain, codenarcTest]*.ignoreFailures = true
-
-/**
- *
- */
 repositories {
   mavenCentral()
+
+  /*
   maven {
     name 'sonatype-repository'
     url 'http://oss.sonatype.org/content/repositories/snapshots/'
   }
 
-  /*
+
   // Amazon S3 Repo
   // See: https://docs.gradle.org/current/release-notes
   maven {
@@ -179,17 +167,6 @@ groovydoc {
   //windowTitle   = ""
 }
 
-pitest {
-  targetClasses       = ['app.*']  //by default "${project.group}.*"
-  //pitestVersion     = "1.1.4" //not needed when a default PIT version should be used
-  threads             = 4
-  outputFormats       = ['XML', 'HTML']
-  failWhenNoMutations = false
-  //testSourceSets    = [sourceSets.test]
-  //mainSourceSets    = [sourceSets.main]
-  //jvmArgs           = ['-Xmx1024m']
-}
-
 /**
  *
  */
@@ -206,8 +183,8 @@ dependencies {
     exclude group: 'asm', module: 'asm-analysis'
   }
 
-  compile "org.slf4j:slf4j-api:1.7.13"
-  runtime "ch.qos.logback:logback-classic:1.1.3"
+  compile "org.slf4j:slf4j-api:1.7.21"
+  runtime "ch.qos.logback:logback-classic:1.1.8"
 
   gems 'rubygems:asciidoctor-diagram:1.2.0'
 
